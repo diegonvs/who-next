@@ -1,20 +1,16 @@
 import Component, {Config} from 'metal-jsx';
 
+import FormCandidate from './components/FormCandidate';
+
 import './css/main.scss';
 
-const FormCandidate = ({ onKeyUpFn, onSubmitFn, value }) => {
-	return (
-		<form class="form-candidate" onSubmit={onSubmitFn}>
-			<article>
-				<label htmlFor="">HTML Score</label>
-				<input type="text" onKeyUp={onKeyUpFn} value={value} />
-				<div class="step"></div>
-			</article>
-		</form>
-	);
-};
-
 class App extends Component {
+	created(){
+		this.setState({
+			html: 0,
+			
+		});
+	}
 	
 	handleSubmit(e){
 		e.preventDefault();
@@ -35,7 +31,10 @@ class App extends Component {
 				</header>
 				
 				<section>
-					<FormCandidate onSubmitFn={this.handleSubmit.bind(this)} value={this.state.currentValue} onKeyUpFn={this.handleKeyUp.bind(this)} />
+					<FormCandidate
+						onSubmitFn={this.handleSubmit.bind(this)}
+						value={this.state.currentValue}
+						onKeyUpFn={this.handleKeyUp.bind(this)} />
 				</section>
 			</div>
 		)
